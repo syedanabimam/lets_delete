@@ -1,0 +1,25 @@
+<%#= form_with(model: item, local: true) do |form| %>
+
+
+<%= form_for([@list, @item]) do |form| %>
+  <% if item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+      <% item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= form.label :name %><br>
+    <%= form.text_field :name, autofocus: true, placeholder: 'Enter name here', required: true, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

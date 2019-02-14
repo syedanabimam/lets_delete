@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h4>Use Recover button to restore</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @soft_deleted_lists.each do |list| %>
+      <br/>
+      <tr>
+        <td><label><b>List Name:</b></label></td>
+        <td><%= list.name %></td>
+      </tr>
+      <br/>
+      <tr>
+        <td>
+          <%= link_to "Restore List", restore_list_path(list), controller: :list, action: :restore, method: :post, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+      <table>
+        <tbody>
+          <% list.items.soft_deleted.each do |item| %>
+            <tr>
+              <td><label><b>Item Name:</b></label></td>
+              <td><%= item.name %> </td>
+            </tr>
+            <tr>
+              <td>
+                <%= link_to "Restore Item", restore_list_item_path(list, item), controller: :item, action: :restore, method: :post, data: { confirm: 'Are you sure?' } %>
+              </td>
+            <tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </tbody>
+</table>
+<br>

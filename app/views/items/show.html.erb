@@ -1,0 +1,6 @@
+<p id="notice"><%= notice %></p>
+
+<p><h3>Name:</h3> <%= @item.name %></p>
+<%# binding.pry %>
+<%= link_to 'Edit', edit_list_item_path([@list, @item]) %> |
+<%= link_to 'Back', root_path %>
