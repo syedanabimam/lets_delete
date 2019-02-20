@@ -19,7 +19,7 @@
       <br/>
       <tr>
         <td>
-          <%= link_to "Restore List", restore_list_path(list), controller: :list, action: :restore, method: :post, data: { confirm: 'Are you sure?' } %>
+          <%= link_to "Restore List", restore_list_path(list), controller: :list, action: :restore, method: :post, data: { turbolinks: false, confirm: 'Are you sure?' } %>
         </td>
       </tr>
       <table>
@@ -31,7 +31,7 @@
             </tr>
             <tr>
               <td>
-                <%= link_to "Restore Item", restore_list_item_path(list, item), controller: :item, action: :restore, method: :post, data: { confirm: 'Are you sure?' } %>
+                <%= link_to "Restore Item", restore_list_item_path(list, item), controller: :item, action: :restore, method: :post, data: { turbolinks: false, confirm: 'Are you sure?' } %>
               </td>
             <tr>
           <% end %>

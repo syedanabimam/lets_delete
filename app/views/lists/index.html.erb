@@ -18,8 +18,8 @@
       <tr>
         <td><%= link_to 'Show', list %></td>
         <td><%= link_to 'Edit', edit_list_path(list) %></td>
-        <td><%= link_to 'Soft Delete', soft_delete_list_path(list), method: :post, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Soft Delete', soft_delete_list_path(list), method: :post, data: { turbolinks: false, confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', list, method: :delete, data: { turbolinks: false, confirm: 'Are you sure?' } %></td>
       </tr>
       <table>
         <tbody>
@@ -32,10 +32,10 @@
               <td><%= link_to "Show Item", list_item_path(list, item) %></td>
               <td><%= link_to "Edit Item", edit_list_item_path(list, item) %></td>
               <td>
-                <%= link_to "Soft Delete Item", soft_delete_list_item_path(list, item), method: :post, data: { confirm: 'Are you sure?' } %>
+                <%= link_to "Soft Delete Item", soft_delete_list_item_path(list, item), method: :post, data: { turbolinks: false, confirm: 'Are you sure?' } %>
               </td>
               <td>
-                <%= link_to "Destroy Item", list_item_path(list, item), method: :delete, data: { confirm: 'Are you sure?' } %>
+                <%= link_to "Destroy Item", list_item_path(list, item), method: :delete, data: { turbolinks: false, confirm: 'Are you sure?' } %>
               </td>
             <tr>
           <% end %>
