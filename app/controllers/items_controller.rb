@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[show edit update destroy soft_delete]
-  before_action :set_list
+  before_action :set_list, only: %i[create new edit update]
 
   def show
   end

@@ -10,17 +10,43 @@
   </thead>
 
   <tbody>
+    <h5>Soft Deleted Items whose list have also been Soft Deleted</h5>
     <% @soft_deleted_lists.each do |list| %>
-      <br/>
       <tr>
         <td><label><b>List Name:</b></label></td>
         <td><%= list.name %></td>
       </tr>
-      <br/>
       <tr>
         <td>
           <%= link_to "Restore List", restore_list_path(list), controller: :list, action: :restore, method: :post, data: { turbolinks: false, confirm: 'Are you sure?' } %>
         </td>
+      </tr>
+      <table>
+        <tbody>
+          <% list.items.soft_deleted.each do |item| %>
+            <tr>
+              <td><label><b>Item Name:</b></label></td>
+              <td><%= item.name %> </td>
+            </tr>
+            <tr>
+              <td>
+                <%= link_to "Restore Item", restore_list_item_path(list, item), controller: :item, action: :restore, method: :post, data: { turbolinks: false, confirm: 'Are you sure?' } %>
+              </td>
+            <tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </tbody>
+
+  <h4>=====================================================================================</h4>
+
+  <tbody>
+    <h5>Soft Deleted Items whose list have not beeen Soft Deleted</h5>
+    <% @non_soft_deleted_lists.each do |list| %>
+      <tr>
+        <td><label><b>List Name:</b></label></td>
+        <td><%= list.name %></td>
       </tr>
       <table>
         <tbody>
