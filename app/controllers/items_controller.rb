@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: %i[show edit update destroy soft_delete restore]
+  before_action :set_item, only: %i[show edit update destroy soft_delete]
   before_action :set_list
 
   def show
@@ -41,6 +41,7 @@ class ItemsController < ApplicationController
   end
 
   def restore
+    @item = Item.soft_deleted.find(params[:id])
     @item.recover
     redirect_to trash_path, notice: 'Item was successfully restored.'
   end

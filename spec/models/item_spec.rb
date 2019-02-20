@@ -32,8 +32,8 @@ RSpec.describe Item do
 
     before { items.first.soft_delete }
 
-    describe '.active' do
-      subject { described_class.active }
+    describe '.default_scoped' do
+      subject { described_class.default_scoped }
 
       it { is_expected.to contain_exactly(items.last) }
     end

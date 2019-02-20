@@ -1,8 +1,8 @@
 class ListsController < ApplicationController
-  before_action :set_list, only: %i[show edit update destroy soft_delete restore]
+  before_action :set_list, only: %i[show edit update destroy soft_delete]
 
   def index
-    @lists = List.active
+    @lists = List.order(:created_at)
   end
 
   def show
@@ -44,6 +44,7 @@ class ListsController < ApplicationController
   end
 
   def restore
+    @list = List.soft_deleted.find(params[:id])
     @list.recover
     redirect_to trash_path, notice: 'List was successfully restored.'
   end

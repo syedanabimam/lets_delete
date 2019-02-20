@@ -17,8 +17,8 @@ RSpec.describe List do
 
     before { lists.first.soft_delete }
 
-    describe '.active' do
-      subject { described_class.active }
+    describe '.default_scoped' do
+      subject { described_class.default_scoped }
 
       it { is_expected.to contain_exactly(lists.last) }
     end
@@ -31,10 +31,13 @@ RSpec.describe List do
   end
 
   describe '#soft_delete' do
-    let(:list) { create(:list) }
+    let(:list)   { create(:list) }
+    let!(:items) { create_list(:item, 2, list: list) }
 
-    it 'will soft delete the list by marking deleted at field' do
+    it 'will soft delete the list and associated items by marking deleted at field' do
       expect { list.soft_delete }.to change(list, :deleted_at)
+      items.map(&:reload)
+      expect(items.map(&:deleted_at)).not_to include(nil)
       expect(list.deleted_at).not_to be_nil
     end
   end
